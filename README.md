@@ -1,33 +1,52 @@
 # Rail Architect
 
-Rail Architect is an early native Android railway-building game prototype written in Java with a custom Canvas renderer.
+Rail Architect は、Java と独自の Canvas 描画処理で開発している、Android 向け鉄道建設ゲームの初期プロトタイプです。
 
-## Current prototype
+## 現在の実装
 
-- Landscape, full-screen game view
-- Grid-based tile placement: erase, straight, vertical, curve, switch, station and signal
-- A simple train movement simulation
-- Run, pause, reset and clear controls
-- GitHub Actions builds a debug APK automatically
+- 横画面・全画面でのゲーム表示
+- マス目に沿ったタイル配置：消去、直線、縦線、カーブ、分岐器、駅、信号
+- シンプルな列車の移動シミュレーション
+- 実行、一時停止、リセット、全消去の操作
+- GitHub Actions によるデバッグ APK の自動ビルド
 
-This is an early prototype. Full track connectivity, switch routing, save/load, multiple trains, timetables and collision prevention are not implemented yet.
+現在は初期プロトタイプです。線路の接続判定、分岐器による進路制御、セーブ・ロード、複数列車、時刻表、列車同士の衝突防止などは、まだ実装されていません。
 
-## Build an APK with GitHub Actions
+## GitHub Actions で APK をビルドする
 
-The workflow runs automatically when code is pushed to `main` or `master`, on pull requests, and can also be started manually.
+次の場合に自動でビルドが実行されます。
 
-1. Open the repository's **Actions** tab.
-2. Select **Build Rail Architect APK**.
-3. Open the latest completed run.
-4. Download **RailArchitect-debug-apk** from the Artifacts section.
-5. Extract the downloaded ZIP to get `app-debug.apk`.
+- `main` または `master` ブランチへのコードのプッシュ
+- プルリクエストの作成・更新
+- GitHub Actions からの手動実行
 
-No signing secrets are needed for a debug APK. It is signed with Android's debug key and is intended for testing, not Play Store release.
+ビルド済み APK は、次の手順でダウンロードできます。
 
-## Build locally
+1. リポジトリの **Actions** タブを開きます。
+2. **Build Rail Architect APK** を選択します。
+3. 最新の実行結果を開きます。
+4. **Artifacts** セクションから **RailArchitect-debug-apk** をダウンロードします。
+5. ダウンロードした ZIP ファイルを展開すると、`app-debug.apk` が入っています。
 
-Requirements: JDK 17, Android SDK platform 35, Android build tools 35.0.0 and Gradle 8.9.
+デバッグ APK のビルドに署名用の Secrets を設定する必要はありません。Android のデバッグ用キーで署名されます。これは動作確認用であり、Google Play で公開するためのリリース APK ではありません。
 
-    gradle --no-daemon assembleDebug
+## ローカル環境でビルドする
 
-APK output: `app/build/outputs/apk/debug/app-debug.apk`
+必要な環境：
+
+- JDK 17
+- Android SDK Platform 35
+- Android SDK Build-Tools 35.0.0
+- Gradle 8.9
+
+プロジェクトのルートディレクトリで、次のコマンドを実行します。
+
+```bash
+gradle --no-daemon assembleDebug
+```
+
+生成される APK の場所：
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
